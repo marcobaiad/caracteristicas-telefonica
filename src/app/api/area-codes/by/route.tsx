@@ -29,10 +29,11 @@ export async function GET(request: Request) {
       const filteredData = formatedCodesData
         .filter(({ Provincia, Prefijo, Localidad }) => {
           const normalizedProv = normalizeString(Provincia)
+          const normalizedLocalidad = normalizeString(Localidad)
           return (
             normalizedProv.match(searchRegex) ||
             Prefijo.match(searchRegex) ||
-            Localidad.match(searchRegex)
+            normalizedLocalidad.match(searchRegex)
           )
         })
         .map(({ Prefijo, Provincia, Localidad }) => ({

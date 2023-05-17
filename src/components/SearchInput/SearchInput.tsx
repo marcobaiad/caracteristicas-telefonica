@@ -22,12 +22,13 @@ export function SearchInput() {
   const [searchType, setSearchType] = useState<Keys>('codigo')
   const onKeyUp = (e: KeyboardEvent<HTMLInputElement>) => {
     const { value } = e.target as HTMLInputElement
-    if (!value) return
+    if (!value || !e.code.match(/Key|Digi|Numpad|Backspace|Delete|Enter/gi))
+      return
     if (timeout) clearTimeout(timeout)
     timeout = setTimeout(async () => {
       const data = await getSearchedData(value)
       setCodes(data)
-    }, 1000)
+    }, 600)
 
     setCodes(undefined)
   }
