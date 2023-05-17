@@ -1,10 +1,11 @@
 import Link from 'next/link'
 import { getCodesOnlyService } from '@/services'
+import { normalizeString, stringToSlug } from '@/utils'
 import { SearchInput } from '@/components'
 
-const getData = async () => getCodesOnlyService('Prefijo')
+const getData = async () => getCodesOnlyService('Provincia')
 
-export default async function Home() {
+export default async function ProvinciaPage() {
   const data: string[] = await getData()
   return (
     <main>
@@ -18,7 +19,7 @@ export default async function Home() {
           por prefijo.
         </p>
         <h2 className="my-7 text-lg font-semibold bg-gray-200 py-2 px-2 rounded-md">
-          Encontrá aquí tu Código de Área
+          Encontrá aquí tu código de área
         </h2>
         <p>
           Usá nuestro buscador para encontrar el código de la localidad a la que
@@ -36,15 +37,18 @@ export default async function Home() {
               'repeat(auto-fit, minmax(min(100%, 210px), 1fr))',
           }}
         >
-          {data.map((cod, index) => (
-            <Link
-              key={`${cod}-${index}`}
-              href={`codigo-de-area/${cod}`}
-              className="text-center rounded-md shadow-lg whitespace-nowrap py-5 px-8 w-ful"
-            >
-              Código de área {cod}
-            </Link>
-          ))}
+          {data.map((cod, index) => {
+            const slug = stringToSlug(normalizeString(cod))
+            return (
+              <Link
+                key={`${cod}-${index}`}
+                href={`provincia/${slug}`}
+                className="text-center rounded-md shadow-lg whitespace-nowrap py-5 px-8 w-ful"
+              >
+                Prefijo {cod}
+              </Link>
+            )
+          })}
         </div>
       </article>
     </main>
