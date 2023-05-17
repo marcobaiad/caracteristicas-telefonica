@@ -1,3 +1,3 @@
-export * from './normalizeString'
-export * from './formatCodesData'
-export * from './stringToSlug'
+export { normalizeString } from './normalizeString'
+export { formatCodesData } from './formatCodesData'
+export { stringToSlug } from './stringToSlug'
