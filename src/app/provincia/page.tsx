@@ -2,8 +2,12 @@ import Link from 'next/link'
 import { getCodesOnlyService } from '@/services'
 import { normalizeString, stringToSlug } from '@/utils'
 import { SearchInput } from '@/components'
+import { getCodesDirectlyOnly } from '@/lib/getCodesDirectlyOnly'
 
-const getData = async () => getCodesOnlyService('Provincia')
+const getData = async () =>
+  process.env.DEPLOYED
+    ? getCodesOnlyService('Provincia')
+    : getCodesDirectlyOnly('Provincia')
 
 export default async function ProvinciaPage() {
   const data: string[] = await getData()
