@@ -1,15 +1,10 @@
 import { MetadataRoute } from 'next'
-import { getCodesOnlyService } from '@/services'
 import { normalizeString, stringToSlug } from '@/utils'
 import { getCodesDirectlyOnly } from '@/lib/getCodesDirectlyOnly'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const codes: string[] = await (process.env.DEPLOYED
-    ? getCodesOnlyService('Prefijo')
-    : getCodesDirectlyOnly('Prefijo'))
-  const provinces: string[] = await (process.env.DEPLOYED
-    ? getCodesOnlyService('Provincia')
-    : getCodesDirectlyOnly('Provincia'))
+  const codes: string[] = await getCodesDirectlyOnly('Prefijo')
+  const provinces: string[] = await getCodesDirectlyOnly('Provincia')
 
   const areaCodes = codes.map((areaCode) => ({
     url: `${
