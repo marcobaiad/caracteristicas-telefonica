@@ -1,16 +1,13 @@
 import { FormatedAreaCodes } from '@/types'
-import { getCodesByService } from '@/services'
 import { BreadCrumps, TableComponent } from '@/components'
-import { getCodesDirectlyBy } from '@/lib/getCodesDirectlyBy'
+import { getCodesDirectlyByProvince } from '@/lib/getCodesDirectlyByProvince'
 
 interface Props {
   params: Record<string, string>
 }
 
 const getCodesByProvincia = async (Provincia: string) =>
-  process.env.DEPLOYED
-    ? getCodesByService({ Provincia })
-    : getCodesDirectlyBy({ Provincia })
+  getCodesDirectlyByProvince(Provincia)
 
 export async function generateMetadata({ params }: Props) {
   const { provincia } = params

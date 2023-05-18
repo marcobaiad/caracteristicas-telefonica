@@ -1,12 +1,8 @@
 import Link from 'next/link'
-import { getCodesOnlyService } from '@/services'
 import { SearchInput } from '@/components'
 import { getCodesDirectlyOnly } from '@/lib/getCodesDirectlyOnly'
 
-const getData = async () =>
-  process.env.DEPLOYED
-    ? getCodesOnlyService('Prefijo')
-    : getCodesDirectlyOnly('Prefijo')
+const getData = async () => getCodesDirectlyOnly('Prefijo')
 
 export default async function Home() {
   const data: string[] = await getData()

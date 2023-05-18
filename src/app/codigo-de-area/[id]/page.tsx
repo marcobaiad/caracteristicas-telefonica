@@ -1,26 +1,24 @@
 import { FormatedAreaCodes } from '@/types'
-import { getCodesByService } from '@/services'
 import { BreadCrumps, TableComponent } from '@/components'
-import { getCodesDirectlyBy } from '@/lib/getCodesDirectlyBy'
+import { getCodeDirectlyBy } from '@/lib/getCodeDirectlyBy'
+import { getCodesDirectlyByProvince } from '@/lib/getCodesDirectlyByProvince'
 
 interface Props {
   params: Record<string, string>
 }
 
 const getCodesByPrefijo = async (Prefijo: string) =>
-  process.env.DEPLOYED
-    ? getCodesByService({ Prefijo })
-    : getCodesDirectlyBy({ Prefijo })
+  getCodeDirectlyBy({ Prefijo })
 
 const getCodesByProvincia = async (Provincia: string) =>
-  process.env.DEPLOYED
-    ? getCodesByService({ Provincia })
-    : getCodesDirectlyBy({ Provincia })
+  getCodesDirectlyByProvince(Provincia)
 
 export async function generateMetadata({ params }: Props) {
   const { id: areaCode } = params
-  const codesByPrefijo: FormatedAreaCodes = await getCodesByPrefijo(areaCode)
-  const { Provincia } = codesByPrefijo
+  const codesByPrefijo: FormatedAreaCodes | undefined = await getCodesByPrefijo(
+    areaCode
+  )
+  const { Provincia } = codesByPrefijo || {}
   return {
     title: `Código de área ${areaCode}`,
     description: `El prefijo ${areaCode} corresponde a la provincia de ${Provincia}. Consultá otras caracteristicas telefónicas de ${Provincia}`,
@@ -29,10 +27,12 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function CodigoAreaPage({ params }: Props) {
   const { id: areaCode } = params
-  const codesByPrefijo: FormatedAreaCodes = await getCodesByPrefijo(areaCode)
-  const { Provincia } = codesByPrefijo
+  const codesByPrefijo: FormatedAreaCodes | undefined = await getCodesByPrefijo(
+    areaCode
+  )
+  const { Provincia } = codesByPrefijo || {}
   const codesByProvincia: FormatedAreaCodes[] = await getCodesByProvincia(
-    Provincia
+    Provincia!
   )
 
   return (
