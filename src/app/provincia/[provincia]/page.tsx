@@ -6,8 +6,8 @@ interface Props {
   params: Record<string, string>
 }
 
-const getCodesByProvincia = async (prov: string) =>
-  getCodesByService({ Provincia: prov })
+const getCodesByProvincia = async (Provincia: string) =>
+  getCodesByService({ Provincia })
 
 export async function generateMetadata({ params }: Props) {
   const { provincia } = params

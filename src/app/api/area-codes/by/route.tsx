@@ -18,10 +18,16 @@ export async function GET(request: Request) {
       )
     if (key === 'Provincia') {
       const provRegex = new RegExp(normalizeString(val), 'gi')
-      const filteredData = formatedCodesData.filter(({ Provincia }) => {
-        const normalizedProv = normalizeString(Provincia)
-        return normalizedProv.match(provRegex)
-      })
+      const filteredData = formatedCodesData
+        .filter(({ Provincia }) => {
+          const normalizedProv = normalizeString(Provincia)
+          return normalizedProv.match(provRegex)
+        })
+        .sort(
+          (a, b) =>
+            Number(a.Prefijo) - Number(b.Prefijo) ||
+            a.Localidad.localeCompare(b.Localidad)
+        )
       return NextResponse.json(filteredData)
     }
     if (key === 'Search') {
@@ -30,6 +36,7 @@ export async function GET(request: Request) {
         .filter(({ Provincia, Prefijo, Localidad }) => {
           const normalizedProv = normalizeString(Provincia)
           const normalizedLocalidad = normalizeString(Localidad)
+
           return (
             normalizedProv.match(searchRegex) ||
             Prefijo.match(searchRegex) ||

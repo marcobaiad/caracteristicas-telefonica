@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/private/',
     },
-    sitemap: 'https://caracteristicatelefonica.com/sitemap.xml',
+    sitemap: 'https://caracteristicas-telefonica-1.vercel.app/sitemap.xml',
   }
 }
