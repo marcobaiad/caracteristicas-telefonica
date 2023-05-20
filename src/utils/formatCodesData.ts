@@ -18,7 +18,7 @@ export function formatCodesData(codes: string[][]) {
       (a, b) =>
         a?.Provincia?.localeCompare(b?.Provincia) ||
         Number(a.Prefijo) - Number(b.Prefijo) ||
-        a?.Localidad?.localeCompare(b?.Localidad)
+        a?.Localidad!?.localeCompare(b?.Localidad!)
     )
   return formatedCodes
 }

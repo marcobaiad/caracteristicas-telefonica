@@ -59,7 +59,7 @@ export default async function CodigoAreaPage({ params }: Props) {
                 .map((code, index) => (
                   <tr key={`${Provincia}-${index}-${areaCode}`}>
                     <td className="border-collapse border border-slate-300 px-4">
-                      {code.Localidad}
+                      {code.Localidad!}
                     </td>
                     <td className="border-collapse border border-slate-300 text-center">
                       {code.Prefijo}
