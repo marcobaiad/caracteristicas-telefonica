@@ -1,5 +1,9 @@
 export interface FormatedAreaCodes {
-  Localidad: string
+  Localidad?: string
   Provincia: string
   Prefijo: string
+}
+
+export interface Search extends FormatedAreaCodes {
+  code: string
 }

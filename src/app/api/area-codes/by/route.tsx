@@ -28,7 +28,7 @@ export async function GET(request: Request) {
         .sort(
           (a, b) =>
             Number(a.Prefijo) - Number(b.Prefijo) ||
-            a.Localidad.localeCompare(b.Localidad)
+            a?.Localidad!.localeCompare(b?.Localidad!)
         )
       return NextResponse.json(filteredData)
     }
@@ -37,7 +37,7 @@ export async function GET(request: Request) {
       const filteredData = formatedCodesData
         .filter(({ Provincia, Prefijo, Localidad }) => {
           const normalizedProv = normalizeString(Provincia)
-          const normalizedLocalidad = normalizeString(Localidad)
+          const normalizedLocalidad = normalizeString(Localidad!)
 
           return (
             normalizedProv.match(searchRegex) ||

@@ -8,12 +8,15 @@ export function HeaderComponent() {
   const selectedLayout = useSelectedLayoutSegment()
 
   return (
-    <header className="mt-8 flex">
-      <Link href="/" className="italic font-semibold leading-loose">
+    <header className="mt-8 flex justify-center">
+      <Link
+        href="/"
+        className="hidden md:block italic font-semibold leading-loose"
+      >
         Caracteristica Telefónica
       </Link>
 
-      <nav className="ml-auto max-w-max">
+      <nav className="md:ml-auto max-w-max">
         <ul className="flex gap-2 max-w-max mr-5">
           <li
             className={`max-w-max rounded px-2 py-1 ${
