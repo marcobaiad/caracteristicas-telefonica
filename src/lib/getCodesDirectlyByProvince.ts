@@ -17,7 +17,7 @@ export const getCodesDirectlyByProvince = async (Provincia: string) => {
       .sort(
         (a, b) =>
           Number(a.Prefijo) - Number(b.Prefijo) ||
-          a.Localidad.localeCompare(b.Localidad)
+          a.Localidad!.localeCompare(b.Localidad!)
       )
     return filteredData
   } catch (error) {
