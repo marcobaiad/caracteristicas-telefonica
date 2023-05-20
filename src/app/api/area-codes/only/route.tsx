@@ -10,7 +10,7 @@ export async function GET(request: Request) {
   try {
     const values = await getAllCodesDirectly()
     const filteredData = Array.from(
-      new Set(values.map((code) => code?.[key as Keys].trim()))
+      new Set(values.map((code) => code?.[key as Keys]!.trim()))
     ).sort((a, b) => {
       if (key === 'Prefijo') return Number(a) - Number(b)
       return a.localeCompare(b)
