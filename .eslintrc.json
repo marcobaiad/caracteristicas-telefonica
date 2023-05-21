@@ -2,8 +2,11 @@
   "extends": [
     "./node_modules/standard/eslintrc.json",
     "next/core-web-vitals",
+    "next",
     "prettier"
   ],
+  "plugins": ["@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
   "rules": {
     "semi": "off",
     "jsx-quotes": "off",
