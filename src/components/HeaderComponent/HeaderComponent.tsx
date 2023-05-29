@@ -13,7 +13,7 @@ declare const window: WindowWithDataLayer
 
 window.dataLayer = window.dataLayer || []
 
-function gtag() {
+function gtag(eventName: string, eventVal: Date | string) {
   window.dataLayer.push(arguments)
   console.log({ arguments })
 }
