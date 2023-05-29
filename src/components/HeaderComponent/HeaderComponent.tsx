@@ -14,8 +14,8 @@ declare const window: WindowWithDataLayer
 window.dataLayer = window.dataLayer || []
 
 function gtag(eventName: string, eventVal: Date | string) {
+  if (!window) return
   window.dataLayer.push(arguments)
-  console.log({ arguments })
 }
 export function HeaderComponent() {
   const selectedLayout = useSelectedLayoutSegment()
