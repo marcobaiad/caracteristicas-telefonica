@@ -1,6 +1,7 @@
 import { HeaderComponent } from '@/components'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import { GTMnoscript, GTMscript } from '@/components/Analytics/Analytics'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -17,9 +18,11 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${inter.className} md:px-14 lg:px-44 xl:px-96`}>
+        <GTMnoscript />
         <HeaderComponent />
         {children}
       </body>
+      <GTMscript />
     </html>
   )
 }
