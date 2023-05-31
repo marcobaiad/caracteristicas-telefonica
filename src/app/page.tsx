@@ -13,9 +13,9 @@ export default async function Home() {
           Listado de todos los códigos de área telefónicos de Argentina
         </h1>
         <p>
-          En caracteristicatelefonica.com, encontrarás todos los códigos de área
-          de Argentina. Todas las características telefónicas por provincia y
-          por prefijo.
+          En <span className="text-blue-400">caracteristicatelefonica.com</span>
+          , encontrarás todos los códigos de área de Argentina. Todas las
+          características telefónicas por provincia y por prefijo.
         </p>
         <h2 className="my-7 text-lg font-semibold bg-gray-200 py-2 px-2 rounded-md">
           Encontrá aquí tu Código de Área
@@ -29,6 +29,10 @@ export default async function Home() {
         <h2 className="mt-7 mb-10 text-lg font-semibold bg-gray-200 py-2 px-2 rounded-md">
           Códigos de Área Argentina
         </h2>
+        <p className="mb-6">
+          Listado de todas los prefijos de Argentina. Hacé click en alguno y
+          conocé a que provincia pertenece y a que localidades.
+        </p>
         <div
           className="grid gap-3"
           style={{
