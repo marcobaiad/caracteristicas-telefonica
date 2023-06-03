@@ -3,9 +3,14 @@ import { formatCodesData, normalizeString } from '@/utils'
 
 export async function GET(request: Request) {
   try {
-    const response = await fetch(
-      process.env.NEXT_PUBLIC_CODES_API_URL as string
-    )
+    console.log({
+      NEXT_PUBLIC_CODES_API_URL: process.env.NEXT_PUBLIC_CODES_API_URL,
+      GH_CODES_API_URL: process.env.GH_CODES_API_URL,
+    })
+
+    const response = await fetch(process.env.NEXT_PUBLIC_CODES_API_URL!)
+    console.log({ response })
+
     if (!response.ok) throw new Error('Ocurrió un error')
 
     const { values }: { values: string[][] } = await response.json()
